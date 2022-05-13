@@ -1,10 +1,5 @@
 import React, {useState} from 'react';
 
-const textAreaStyle = {
-  width: "100%",
-  justifyContent: "center"
-}
-
 const EarthquakeMine = () => {
   const [experienceArr, setExperienceArr] = useState([]);
   const [experience, setExperience] = useState('');
