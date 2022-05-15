@@ -19,8 +19,6 @@ const ThemeDetector = () => {
     return () => mq.removeEventListener('change',mqListener());
 
   }, []);
-
-  // console.log(isDarkTheme);
   return isDarkTheme;
 }
 
