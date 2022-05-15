@@ -1,6 +1,38 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import '../styles/style.scss';
+
+
+const ThemeDetector = () => {
+  // const [isDarkTheme, setIsDarkTheme] = useState(getMatchMedia().matches);
+  const [isDarkTheme, setIsDarkTheme] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches);
+  
+  const mqListener = (e) => {
+    setIsDarkTheme(e);
+  }
+  
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+
+    // mq.addEventListener('change', e => mqListener(e.matches ?  window.matchMedia("(prefers-color-scheme: dark)"): window.matchMedia("(prefers-color-scheme: light)")));
+    mq.addEventListener('change', (e) => mqListener(e.matches));
+
+    return () => mq.removeEventListener('change',mqListener());
+
+  }, []);
+
+  // console.log(isDarkTheme);
+  return isDarkTheme;
+}
+
+
+const buttonStyle = {
+  color: 'white',
+  backgroundColor: "lightblue",
+  padding: '10px'
+}
 
 const EarthquakeMine = () => {
+  const mode = ThemeDetector();
   const [experienceArr, setExperienceArr] = useState([]);
   const [experience, setExperience] = useState('');
 
@@ -12,7 +44,7 @@ const EarthquakeMine = () => {
     setExperience('');
   }
   return(
-    <div>
+    <div className={mode ? 'dark-mode' : 'light-mode'}>
       <div style={{padding: "30px"}}>
         <div style={{padding: "10px"}}>
         <strong>
@@ -22,7 +54,7 @@ const EarthquakeMine = () => {
         </div>
         <div>
           <form onSubmit={handleExperience}>
-            <div style={{width:"100%", justifyContent:"center", display: "flex"}}>
+            <div style={{width:'100%', padding:'0px 0px 20px', justifyContent:'center', display: 'flex'}}>
               <textarea
                 className='form-control'
                 rows="5"
@@ -33,6 +65,7 @@ const EarthquakeMine = () => {
             </div>
             <input 
               type='submit'
+              style={buttonStyle}
             />
           </form>
         </div>
@@ -41,10 +74,6 @@ const EarthquakeMine = () => {
           return <div key={index}><p style={{fontStyle:"italic"}}>"{exp}"</p></div>
         })} 
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
     </div>
   );
 };

@@ -7,18 +7,20 @@ import { getEarthquakesList } from '../api/earthquakes';
 import EarthquakeTable from '../components/earthquakesTable';
 import EarthquakeMap from '../components/earthquakesMap';
 import MyEarthquakes from '../components/earthquakesMine';
+import Test from '../components/test';
 
 
 // Component that fetches/gets data (list of earthquakes) from an API.
 // Example of a stateful component.
 class Earthquakes extends Component {
+
   mounted = false;
 
   constructor() {
     super();
     this.state = {
       earthquakes: [],  
-      refresh: 0
+      refresh: 0,
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -26,15 +28,7 @@ class Earthquakes extends Component {
   componentDidMount() {
     this.mounted = true;
     try{
-      setInterval(async () => {
-        getEarthquakesList().then(res => {
-          if(this.mounted) {
-            this.setState({earthquakes: res.data.results.sort(function(a, b) {
-              return b.timestamp - a.timestamp;
-            })});
-          }
-        })
-      }, this.state.refresh * 60000);
+      this.getData();
     }catch (e) {
       alert("I'm sorry!")
     }
@@ -43,9 +37,27 @@ class Earthquakes extends Component {
     this.mounted = false;
   }
 
-  handleChange(event) {
-    this.setState({refresh: event.target.value});
+  getData() {
+    getEarthquakesList().then(res => {
+      this.setState({earthquakes: res.data.results.sort(function(a, b) {
+        return b.timestamp - a.timestamp;
+      })});
+    })
   }
+  handleChange(event) {
+    this.setState({refresh: event.target.value})
+    clearInterval(this.intervalID)
+    try{
+
+      this.intervalID = setInterval(async () => {
+        this.getData();
+      }, event.target.value * 60000);
+    }catch (e) {
+      alert("I'm sorry!")
+    }
+  }
+
+  
 
   render() {
     return (
@@ -68,13 +80,15 @@ class Earthquakes extends Component {
             <ul className="list">
               <li><Link to='/earthquakes/table'><Button variant="light">Table </Button></Link></li>
               <li><Link to='/earthquakes/map'><Button variant="light">Map</Button></Link></li>
-              <li><Link to='/earthquakes/myEarthquakes'><Button variant="light">My experience</Button></Link></li>
+              <li><Link to='/earthquakes/myEarthquakes'><Button variant="light">My Experience</Button></Link></li>
+              <li><Link to='/earthquakes/test'><Button variant="light">Table </Button></Link></li>
             </ul>
           </nav>
           <Routes>
             <Route path="/table" element={ <EarthquakeTable earthquakes={this.state.earthquakes}></EarthquakeTable>} />
             <Route path="/map" element={ <EarthquakeMap earthquakes={this.state.earthquakes}></EarthquakeMap>} />
             <Route path="/myEarthquakes" element={ <MyEarthquakes earthquakes={this.state.earthquakes}></MyEarthquakes>} />
+            <Route path="/tester" element={ <Test earthquakes={this.state.earthquakes}></Test>} />
           </Routes>
       </div>
     );

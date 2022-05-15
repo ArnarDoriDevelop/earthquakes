@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Earthquakes from '../views/earthquakes';
-import Test from '../components/test';
+import Test from './test';
 
 const heading = {
   color: 'pink'

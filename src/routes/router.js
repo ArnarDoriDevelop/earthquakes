@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {BrowserRouter, Route, Routes, Link} from 'react-router-dom';
 import {Button} from 'react-bootstrap'
 
 import '../styles/style.scss';
+
 import Earthquake from '../views/earthquakes';
 import Eruptions from '../views/eruptions';
 import Avalances from '../views/avalances';
 
 
+
 // Component that routes to different components based on users choice (created for future implementation in the project f.ex. Volcanos).
 // Example of a stateless component
 const Router = () => {
+
   return (
     <div>
+
       <BrowserRouter>
           <div className="navbar">            
             <nav className="nav">
