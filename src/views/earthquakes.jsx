@@ -52,7 +52,7 @@ class Earthquakes extends Component {
         this.getData();
       }, event.target.value * 60000);
     }catch (e) {
-      alert("I'm sorry!")
+      alert("Error fetching data")
     }
   }
 
