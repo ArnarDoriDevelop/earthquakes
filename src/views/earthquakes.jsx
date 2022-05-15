@@ -7,7 +7,6 @@ import { getEarthquakesList } from '../api/earthquakes';
 import EarthquakeTable from '../components/earthquakesTable';
 import EarthquakeMap from '../components/earthquakesMap';
 import MyEarthquakes from '../components/earthquakesMine';
-import Test from '../components/test';
 
 
 // Component that fetches/gets data (list of earthquakes) from an API.
@@ -30,7 +29,7 @@ class Earthquakes extends Component {
     try{
       this.getData();
     }catch (e) {
-      alert("I'm sorry!")
+      alert("Error fetching data")
     }
   };
   componentWillUnmount() {
@@ -56,8 +55,6 @@ class Earthquakes extends Component {
       alert("I'm sorry!")
     }
   }
-
-  
 
   render() {
     return (
@@ -88,7 +85,6 @@ class Earthquakes extends Component {
             <Route path="/table" element={ <EarthquakeTable earthquakes={this.state.earthquakes}></EarthquakeTable>} />
             <Route path="/map" element={ <EarthquakeMap earthquakes={this.state.earthquakes}></EarthquakeMap>} />
             <Route path="/myEarthquakes" element={ <MyEarthquakes earthquakes={this.state.earthquakes}></MyEarthquakes>} />
-            <Route path="/tester" element={ <Test earthquakes={this.state.earthquakes}></Test>} />
           </Routes>
       </div>
     );

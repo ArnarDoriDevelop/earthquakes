@@ -2,8 +2,6 @@ import React from 'react';
 import '../App.css';
 import {MapContainer, TileLayer, Marker, Popup} from 'react-leaflet';
 
-import Test from './test';
-
 const iceCoord = [64.963051, -19.020836];
 
 const EarthquakeMap = (props) => {
@@ -34,7 +32,6 @@ const EarthquakeMap = (props) => {
             ))}
         </MapContainer>
       </div>
-      <Test/>
     </div>
   );
 };

@@ -1,7 +1,5 @@
 import React from "react";
 
-
-
 const Avalances = () => {
   return (
     <div>
