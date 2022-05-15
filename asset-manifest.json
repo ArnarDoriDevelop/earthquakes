@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/earthquakes/static/css/main.993ffdfa.css",
+    "main.js": "/earthquakes/static/js/main.cd49fa1e.js",
+    "index.html": "/earthquakes/index.html",
+    "main.993ffdfa.css.map": "/earthquakes/static/css/main.993ffdfa.css.map",
+    "main.cd49fa1e.js.map": "/earthquakes/static/js/main.cd49fa1e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.993ffdfa.css",
+    "static/js/main.cd49fa1e.js"
+  ]
+}
