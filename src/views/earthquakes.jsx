@@ -61,7 +61,7 @@ class Earthquakes extends Component {
       <div> 
         <br />
         <label>
-          Refresh:
+          Refresh data in minutes:
           <input 
             type="number" 
             min={0}
@@ -71,21 +71,18 @@ class Earthquakes extends Component {
           />
         </label>
         <br />
-        <br />
-        <br />
-          <nav className="nav">
-            <ul className="list">
-              <li><Link to='/earthquakes/table'><Button variant="light">Table </Button></Link></li>
-              <li><Link to='/earthquakes/map'><Button variant="light">Map</Button></Link></li>
-              <li><Link to='/earthquakes/myEarthquakes'><Button variant="light">My Experience</Button></Link></li>
-              <li><Link to='/earthquakes/test'><Button variant="light">Table </Button></Link></li>
-            </ul>
-          </nav>
-          <Routes>
-            <Route path="/table" element={ <EarthquakeTable earthquakes={this.state.earthquakes}></EarthquakeTable>} />
-            <Route path="/map" element={ <EarthquakeMap earthquakes={this.state.earthquakes}></EarthquakeMap>} />
-            <Route path="/myEarthquakes" element={ <MyEarthquakes earthquakes={this.state.earthquakes}></MyEarthquakes>} />
-          </Routes>
+        <nav className="nav">
+          <ul className="list">
+            <li><Link to='/earthquakes/table'><Button variant="light">Table </Button></Link></li>
+            <li><Link to='/earthquakes/map'><Button variant="light">Map</Button></Link></li>
+            <li><Link to='/earthquakes/myEarthquakes'><Button variant="light">My Experience</Button></Link></li>
+          </ul>
+        </nav>
+        <Routes>
+          <Route path="/table" element={ <EarthquakeTable earthquakes={this.state.earthquakes}></EarthquakeTable>} />
+          <Route path="/map" element={ <EarthquakeMap earthquakes={this.state.earthquakes}></EarthquakeMap>} />
+          <Route path="/myEarthquakes" element={ <MyEarthquakes earthquakes={this.state.earthquakes}></MyEarthquakes>} />
+        </Routes>
       </div>
     );
   }

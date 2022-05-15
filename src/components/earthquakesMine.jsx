@@ -1,22 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import '../styles/style.scss';
 
-
 const ThemeDetector = () => {
-  // const [isDarkTheme, setIsDarkTheme] = useState(getMatchMedia().matches);
   const [isDarkTheme, setIsDarkTheme] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches);
   
-  const mqListener = (e) => {
+  const listen = (e) => {
     setIsDarkTheme(e);
   }
   
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    mediaQuery.addEventListener('change', (e) => listen(e.matches));
 
-    // mq.addEventListener('change', e => mqListener(e.matches ?  window.matchMedia("(prefers-color-scheme: dark)"): window.matchMedia("(prefers-color-scheme: light)")));
-    mq.addEventListener('change', (e) => mqListener(e.matches));
-
-    return () => mq.removeEventListener('change',mqListener());
+    return () => mediaQuery.removeEventListener('change',listen());
 
   }, []);
   return isDarkTheme;
