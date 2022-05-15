@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import '../styles/style.scss';
 
-const ThemeDetector = () => {
+const Theme = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches);
   
   const listen = (e) => {
@@ -26,7 +26,7 @@ const buttonStyle = {
 }
 
 const EarthquakeMine = () => {
-  const mode = ThemeDetector();
+  const mode = Theme();
   const [experienceArr, setExperienceArr] = useState([]);
   const [experience, setExperience] = useState('');
 
